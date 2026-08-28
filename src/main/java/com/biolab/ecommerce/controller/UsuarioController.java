@@ -1,4 +1,4 @@
-package com.biolab.ecommerce.Controller;
+package com.biolab.ecommerce.controller;
 
 import com.biolab.ecommerce.DTOs.UsuarioDTO;
 import com.biolab.ecommerce.services.UsuarioService;

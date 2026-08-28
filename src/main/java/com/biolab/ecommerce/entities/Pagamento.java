@@ -1,7 +1,7 @@
 package com.biolab.ecommerce.entities;
 
-import com.biolab.ecommerce.entities.enums.StatusPedido;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,12 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido {
+public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Instant momento;
-    private StatusPedido status;
-    @ManyToOne //muitos para um
-    private Usuario cliente;
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL) // um para um
-    private Pagamento pagamento;
+    @OneToOne
+    @MapsId
+    private Pedido pedido;
 }
