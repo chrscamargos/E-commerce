@@ -30,7 +30,7 @@ public class CategoriaService {
         return dto;
     }
 
-    public String delete(long id){
+    public String deletarCat(long id){
         Categoria categoria= categoriaRepository.findById(id).orElseThrow();
         categoriaRepository.deleteById(categoria.getId());
         return "excluído com sucesso";
@@ -38,5 +38,12 @@ public class CategoriaService {
 
     public List<CategoriaDTO> mostrarTodasCat(){
         return categoriaRepository.findAll().stream().map(categoria -> new CategoriaDTO(categoria.getId(), categoria.getNome())).toList();
+    }
+
+    public String alterarCat(long id, CategoriaDTO dto){
+        Categoria alterarCategoria = categoriaRepository.findById(id).orElseThrow();
+        alterarCategoria.setNome(dto.getNome());
+        categoriaRepository.save(alterarCategoria);
+        return "Categoria editada com sucesso";
     }
 }

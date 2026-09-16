@@ -29,7 +29,7 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarCat (@PathVariable long id){
-        categoriaService.delete(id);
+        categoriaService.deletarCat(id);
         return ResponseEntity.noContent().build(); //metodo de deletar retornando status code 204
     }
 
@@ -37,4 +37,10 @@ public class CategoriaController {
     public ResponseEntity<List<CategoriaDTO>> mostrarCatergorias(){
         return ResponseEntity.ok(categoriaService.mostrarTodasCat());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> alterarCat(@PathVariable Long id, @RequestBody CategoriaDTO dto){
+        return ResponseEntity.ok(categoriaService.alterarCat(id, dto));
+    }
+
 }
