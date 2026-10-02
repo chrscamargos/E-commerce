@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,4 +25,12 @@ public class Produto {
     // criando uma tabela intermediaria
     @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private Set<Categoria> categorias = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemDoPedido> itens = new HashSet<>();
+
+    // lista para mostrar os pedidos X que contem o item Y
+    public List<Pedido> getPedido(){
+        return itens.stream().map(x -> x.getPedido()).toList();
+    }
 }
